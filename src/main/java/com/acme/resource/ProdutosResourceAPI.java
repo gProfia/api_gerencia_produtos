@@ -2,6 +2,8 @@ package com.acme.resource;
 
 import com.acme.dto.ProdutoRequest;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -26,7 +28,9 @@ public interface ProdutosResourceAPI {
     Response buscar(@PathParam("id") Long id);
 
     @POST
-    Response cadastrar(ProdutoRequest produtoRequest);
+    Response cadastrar(
+        @Valid @NotNull 
+        ProdutoRequest produtoRequest);
 
     @PUT
     @Path("/{id}")

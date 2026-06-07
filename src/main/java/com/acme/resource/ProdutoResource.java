@@ -1,15 +1,11 @@
 package com.acme.resource;
 
-import java.util.Optional;
-
 import com.acme.dto.ErroResponse;
 import com.acme.dto.ProdutoRequest;
 import com.acme.dto.ProdutoResponse;
-import com.acme.entity.Produto;
 import com.acme.service.ProdutoService;
 
 import jakarta.inject.Inject;
-import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 

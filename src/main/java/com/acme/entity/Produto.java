@@ -20,5 +20,5 @@ public class Produto extends PanacheEntityBase{
     private String nome;
     private String descricao;
     private Double preco;
-    private int estoque;
+    private Integer estoque;
 }
