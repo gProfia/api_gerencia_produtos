@@ -22,18 +22,18 @@ public interface ProdutosResourceAPI {
     Response listar();
 
     @GET
-    @Path("/id")
-    Response buscar(@PathParam("{id}") Long id);
+    @Path("/{id}")
+    Response buscar(@PathParam("id") Long id);
 
     @POST
     Response cadastrar(ProdutoRequest produtoRequest);
 
     @PUT
-    @Path("/id")
-    Response atualizar(@PathParam("{id}") Long id, ProdutoRequest produtoRequest);
+    @Path("/{id}")
+    Response atualizar(@PathParam("id") Long id, ProdutoRequest produtoRequest);
 
     @DELETE
-    @Path("/id")
-    Response remover(@PathParam("{id}") Long id);
+    @Path("/{id}")
+    Response remover(@PathParam("id") Long id);
 
 }

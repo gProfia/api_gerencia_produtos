@@ -1,5 +1,7 @@
 package com.acme.service;
 
+import java.util.Optional;
+
 import com.acme.ProdutoRepository.ProdutoRepository;
 import com.acme.entity.Produto;
 
@@ -17,5 +19,9 @@ public class ProdutoService {
     public Produto cadastrar(Produto produto) {
         produto.persistAndFlush();
         return produto;
+    }
+
+    public Optional<Produto> buscar(Long id) {
+        return Produto.findByIdOptional(id);
     }
 }
