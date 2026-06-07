@@ -21,4 +21,12 @@ public class Produto extends PanacheEntityBase{
     private String descricao;
     private Double preco;
     private Integer estoque;
+
+    public Produto atualizeDe(Produto outro){
+        this.setNome(outro.getNome());
+        this.setDescricao(outro.getDescricao());
+        this.setPreco(outro.getPreco());
+        this.setEstoque(outro.getEstoque());
+        return this;
+    }
 }

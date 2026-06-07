@@ -30,4 +30,21 @@ public class ProdutoService {
     public List<Produto> listar() {
         return Produto.listAll();
     }
+
+    @Transactional
+    public Optional<Produto> atualizar(Long id, Produto entity) {
+        Optional<Produto> optProduto = Produto.findByIdOptional(id);
+        if(optProduto.isEmpty()){
+            return optProduto;
+        }else{
+            return optProduto.map(p -> {
+                    p.atualizeDe(entity);
+                    p.persistAndFlush();
+                    return p;
+                }
+            );
+        }
+
+
+    }
 }

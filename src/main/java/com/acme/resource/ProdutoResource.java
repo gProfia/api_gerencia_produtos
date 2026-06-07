@@ -51,8 +51,14 @@ public class ProdutoResource  implements ProdutosResourceAPI{
 
     @Override
     public Response atualizar(Long id, ProdutoRequest produtoRequest) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atualizar'");
+        return produtoService.atualizar(id, produtoRequest.toEntity())
+            .map(p -> Response.ok(ProdutoResponse.toDTO(p)).build())
+            .orElseGet(
+                () ->  Response
+                        .status(Status.NOT_FOUND)
+                        .entity(new ErroResponse("Produto não encontrado"))
+                        .build()
+            );
     }
 
     @Override

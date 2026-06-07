@@ -34,7 +34,11 @@ public interface ProdutosResourceAPI {
 
     @PUT
     @Path("/{id}")
-    Response atualizar(@PathParam("id") Long id, ProdutoRequest produtoRequest);
+    Response atualizar(
+        @PathParam("id") 
+        Long id,
+        @Valid @NotNull 
+        ProdutoRequest produtoRequest);
 
     @DELETE
     @Path("/{id}")
