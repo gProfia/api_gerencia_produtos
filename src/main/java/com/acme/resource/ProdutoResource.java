@@ -63,8 +63,14 @@ public class ProdutoResource  implements ProdutosResourceAPI{
 
     @Override
     public Response remover(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remover'");
+        if (produtoService.remover(id)){
+            return Response.noContent().build();
+        }else{
+           return Response
+                    .status(Status.NOT_FOUND)
+                    .entity(new ErroResponse("Produto não encontrado"))
+                    .build();
+        }
     }
 
 }
