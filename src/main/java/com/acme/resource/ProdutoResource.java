@@ -1,5 +1,7 @@
 package com.acme.resource;
 
+import org.eclipse.microprofile.jwt.JsonWebToken;
+
 import com.acme.dto.ErroResponse;
 import com.acme.dto.ProdutoRequest;
 import com.acme.dto.ProdutoResponse;
@@ -13,6 +15,9 @@ public class ProdutoResource  implements ProdutosResourceAPI{
 
     @Inject 
     private ProdutoService produtoService;
+
+    @Inject
+    JsonWebToken jwt;
 
     @Override
     public Response listar() {
