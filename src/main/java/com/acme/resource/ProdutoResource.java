@@ -16,8 +16,12 @@ public class ProdutoResource  implements ProdutosResourceAPI{
 
     @Override
     public Response listar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listar'");
+        return Response.ok(
+            produtoService.listar()
+            .stream()
+            .map(p -> ProdutoResponse.toDTO(p))
+            .toList()
+        ).build();
     }
 
     @Override
