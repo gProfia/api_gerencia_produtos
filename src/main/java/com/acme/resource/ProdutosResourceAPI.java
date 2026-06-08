@@ -2,6 +2,8 @@ package com.acme.resource;
 
 import com.acme.dto.ProdutoRequest;
 
+import io.quarkus.cache.CacheInvalidateAll;
+import io.quarkus.cache.CacheResult;
 import io.quarkus.security.Authenticated;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
@@ -33,14 +35,14 @@ public interface ProdutosResourceAPI {
     Response buscar(@PathParam("id") Long id);
 
     @POST
-    @RolesAllowed({ "ADMIN" })
+    @RolesAllowed({ "ADMIN" })    
     Response cadastrar(
         @Valid @NotNull 
         ProdutoRequest produtoRequest);
 
     @PUT
     @Path("/{id}")
-    @RolesAllowed({ "ADMIN" })
+    @RolesAllowed({ "ADMIN" })    
     Response atualizar(
         @PathParam("id") 
         Long id,

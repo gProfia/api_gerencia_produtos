@@ -7,6 +7,9 @@ import com.acme.dto.ProdutoRequest;
 import com.acme.dto.ProdutoResponse;
 import com.acme.service.ProdutoService;
 
+import io.quarkus.cache.CacheInvalidateAll;
+import io.quarkus.cache.CacheKey;
+import io.quarkus.cache.CacheResult;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
@@ -20,6 +23,7 @@ public class ProdutoResource  implements ProdutosResourceAPI{
     JsonWebToken jwt;
 
     @Override
+    @CacheResult(cacheName = "produtos")
     public Response listar() {
         return Response.ok(
             produtoService.listar()
@@ -30,6 +34,7 @@ public class ProdutoResource  implements ProdutosResourceAPI{
     }
 
     @Override
+    @CacheResult(cacheName = "produtos")
     public Response buscar(Long id) {
 
         return produtoService.buscar(id)
@@ -43,6 +48,7 @@ public class ProdutoResource  implements ProdutosResourceAPI{
     }
 
     @Override
+    @CacheInvalidateAll(cacheName = "produtos")
     public Response cadastrar(ProdutoRequest produtoRequest) {        
         return Response
         .status(Status.CREATED)
@@ -55,6 +61,7 @@ public class ProdutoResource  implements ProdutosResourceAPI{
     }
 
     @Override
+    @CacheInvalidateAll(cacheName = "produtos")
     public Response atualizar(Long id, ProdutoRequest produtoRequest) {
         return produtoService.atualizar(id, produtoRequest.toEntity())
             .map(p -> Response.ok(ProdutoResponse.toDTO(p)).build())
@@ -67,6 +74,7 @@ public class ProdutoResource  implements ProdutosResourceAPI{
     }
 
     @Override
+    @CacheInvalidateAll(cacheName = "produtos")
     public Response remover(Long id) {
         if (produtoService.remover(id)){
             return Response.noContent().build();
